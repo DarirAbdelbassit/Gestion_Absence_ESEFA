@@ -1,8 +1,7 @@
 <?php
-session_start();
-error_reporting();
-include './include/connect.php';
-@$id_professor = $_GET['id_professor'];  
+include('./include/config.php'); 
+
+$id_professor =  $_SESSION['id_professor'];  
   ?>
 <!DOCTYPE html>
 <html lang="en">

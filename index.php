@@ -1,36 +1,5 @@
-<?php include('./include/connect.php');
- session_start();
-
- error_reporting(0);
- 
- if (isset($_SESSION['email'])) {
-     header("Location: home1.php");
- }
-   if(isset($_POST['submit'])){
-
-    $email=htmlspecialchars($_POST['email']);
-    $password=htmlspecialchars(md5($_POST['password']));
-      $sql = "SELECT * FROM professor WHERE email = '$email' AND password = '$password'";
-      $result = mysqli_query($conn,$sql);
-            if (mysqli_num_rows($result) === 1) {
-              $row = mysqli_fetch_assoc( $result);
-            if ($row['email'] === $email && $row['password'] === $password) {
-              $id_professor = $row['id_professor'];
-              $_SESSION['id_professor'] = $id_professor;
-              header("Location: home1.php?id_professor=".$id_professor);
-            }
-             
-      } 
-     else{
-      $msg = '<div class="alert alert-danger">Courriel ou mot de passe erroné</div>';
-        } 
-     
-  }
-  if(isset($_POST['check'])){
-    setcookie('email',$email,time() + 365*24*3600,null,null,false,true);
-    setcookie('password',$_POST['password'],time() + 365*24*3600,null,null,false,true);
-  }
- 
+<?php 
+include('./include/config.php'); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +28,9 @@
             <form class="form_horizontal" method="POST" style="background-color: rgba(0,0, 0, 0.4);padding: 2rem;border-radius: 31px;border: 1px solid rgb(252, 95, 4);">
               <div class="form_icon"><i class="fa fa-user-circle"></i></div>
               <h3 class="title">Bienvenue</h3>
-              <?php echo $msg;?>
+              <?php 
+              login();
+              ?>
               <div class="form-group">
                 <span class="input-icon" ><i class="fa fa-user" style="color: rgb(252, 95, 4);"></i></span>
                 <input

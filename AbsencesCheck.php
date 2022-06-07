@@ -1,7 +1,6 @@
 <?php
-session_start();
+include('./include/config.php'); 
 
-include './include/connect.php';
 $id_student = $_GET['id_student'];
 $class_name = $_GET['class_name'];
 $id_class = $_GET['id_class'];

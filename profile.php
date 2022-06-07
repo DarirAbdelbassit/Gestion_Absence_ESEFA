@@ -1,6 +1,6 @@
 <?php 
-include './include/connect.php';
-session_start();
+include('./include/config.php'); 
+
 @$id_professor = $_GET['id_professor'];  
    $select = "SELECT * FROM professor WHERE id_professor='$id_professor'";
    $result = mysqli_query($conn, $select);
